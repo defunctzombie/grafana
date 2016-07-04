@@ -245,7 +245,7 @@ class GraphCtrl extends MetricsPanelCtrl {
     var args = new Array(params.length);
     var series = new Array(orig.length);
     var datapts = orig[0].datapoints.map((pt, idx) => {
-      for (var i=0 ; i<orig.length ; ++i) {
+      for (var i = 0 ; i < orig.length ; ++i) {
         series[i] = orig[i].datapoints[idx][0];
       }
       args[0] = series;

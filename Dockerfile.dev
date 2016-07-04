@@ -1,0 +1,22 @@
+FROM golang:1.5.4-wheezy
+
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN apt-get update && apt-get install -y git gcc nodejs bzip2
+
+WORKDIR /app
+
+ADD package.json /app/
+RUN npm install
+
+ADD build.go /app/
+RUN go run build.go setup
+
+RUN mkdir -p /go/src/github.com/grafana/
+RUN ln -s /app/ /go/src/github.com/grafana/grafana
+
+#ADD . /app
+# go run build.go build
+# npm run build
+# ./bin/grafana-server
+
+CMD ["/bin/bash"]
